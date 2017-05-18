@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+  >
+
+    <ImageView
+        android:id="@+id/iv_AndroidLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        tools:src="@drawable/eclair"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_AndroidLogo">
+
+        <TextView
+            android:id="@+id/tv_AndroidTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="Android Version"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_AndroidVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_AndroidTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp"
+            tools:text="2.0/2.1 eclair"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_AndroidVersion"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/et_AndroidMemo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:enabled="false"
+                android:focusable="false"
+                android:textSize="12sp"
+                tools:text="最佳化硬體速度「Car Home」程式支援更多的螢幕解像度
+改良的使用者介面新的瀏覽器的用户介面和支援HTML5新的聯繫人名單更好的白色/黑色背景比率改進Google Maps 3.1.2支援Microsoft Exchange
+支援內建相機閃光燈支援數位變焦改進的虛擬鍵盤支援藍牙2.1支援動態桌面的設計[18]"/>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
