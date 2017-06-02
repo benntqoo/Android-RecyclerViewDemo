@@ -24,6 +24,15 @@ public class RecyclerViewDemoAdapter extends RecyclerView.Adapter<RecyclerViewDe
             R.drawable.marshmallow, R.drawable.nougat, R.drawable.o};
 
     private List<AndroidVO> mAndroidVOList;
+    private OnRecyclerViewClick mClick;
+
+    public interface OnRecyclerViewClick {
+        void onItemClick(View v, int position);
+    }
+
+    public void setOnClickListener(OnRecyclerViewClick clickListener) {
+        this.mClick = clickListener;
+    }
 
     public RecyclerViewDemoAdapter(List<AndroidVO> androidVOList) {
         mAndroidVOList = androidVOList;
@@ -40,6 +49,8 @@ public class RecyclerViewDemoAdapter extends RecyclerView.Adapter<RecyclerViewDe
         holder.tvVersion.setText(mAndroidVOList.get(position).getVersion());
         holder.ivLogo.setImageResource(image[position]);
         holder.etMemo.setText(mAndroidVOList.get(position).getMemo());
+
+        holder.itemView.setTag(position);
     }
 
     @Override
@@ -47,7 +58,7 @@ public class RecyclerViewDemoAdapter extends RecyclerView.Adapter<RecyclerViewDe
         return mAndroidVOList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivLogo;
         TextView tvVersion;
         EditText etMemo;
@@ -57,6 +68,14 @@ public class RecyclerViewDemoAdapter extends RecyclerView.Adapter<RecyclerViewDe
             ivLogo = (ImageView) itemView.findViewById(R.id.iv_AndroidLogo);
             tvVersion = (TextView) itemView.findViewById(R.id.tv_AndroidVersion);
             etMemo = (EditText) itemView.findViewById(R.id.et_AndroidMemo);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mClick != null)
+                mClick.onItemClick(v, (int) v.getTag());
         }
     }
 }

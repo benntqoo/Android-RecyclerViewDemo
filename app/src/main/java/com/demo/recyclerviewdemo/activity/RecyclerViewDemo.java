@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.demo.recyclerviewdemo.R;
 import com.demo.recyclerviewdemo.VO.AndroidVO;
@@ -26,6 +28,16 @@ public class RecyclerViewDemo extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_RecyclerDemo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnClickListener(new RecyclerViewDemoAdapter.OnRecyclerViewClick() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Toast.makeText(RecyclerViewDemo.this, "version=" + version.get(position) + "\n" + memo.get(position),
+                        Toast
+                                .LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     private List<AndroidVO> initData() {
